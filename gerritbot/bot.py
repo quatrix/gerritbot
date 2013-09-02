@@ -206,6 +206,10 @@ class Gerrit(threading.Thread):
             # The data we care about was not present, no channels want
             # this event.
             channel_set = set()
+
+        for channel in self.channel_config.projects.get("*", []):
+            channel_set.add(channel)
+
         self.log.info('Potential channels to receive event notification: %s' %
                       channel_set)
         for channel in channel_set:
